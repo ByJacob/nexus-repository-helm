@@ -63,12 +63,11 @@ public class HostedHandlers extends ComponentSupport {
                     .getRepository()
                     .getConfiguration()
                     .attributes("helm")
-                    .child("hosted")
                     .get("absoluteUrl", false);
+        log.debug(
+            "Repository configuration: {}",
+            context.getRepository().getConfiguration().getAttributes());
         if (assetKind == AssetKind.HELM_INDEX && Optional.ofNullable(isAbsoluteUrl).orElse(false)) {
-          log.debug(
-              "Repository configuration: {}",
-              context.getRepository().getConfiguration().getAttributes());
           content = helmPathUtils.updateYamlUrls(content, context.getRepository().getUrl());
         }
         return (content != null) ? ok(content) : notFound();
