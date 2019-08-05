@@ -15,6 +15,8 @@
 
 /**
  * Helm plugin strings.
+ *
+ * Edit By Jakub Rosa © 2019 Telic AG.
  */
 Ext.define('NX.helm.app.PluginStrings', {
   '@aggregate_priority': 90,
@@ -29,7 +31,10 @@ Ext.define('NX.helm.app.PluginStrings', {
     SearchHelm_Group: 'Helm Repositories',
     SearchHelm_License_FieldLabel: 'License',
     SearchHelm_Text: 'Helm',
-    SearchHelm_Description: 'Search for components in Helm repositories'
+    SearchHelm_Description: 'Search for components in Helm repositories',
+    Helm_Hosted_Configuration: 'Helm hosted configuration',
+    Absolute_URL_Title: 'Set absolute path for urls',
+    Absolute_URL_Description: 'This option is require when you want use this repository e.g. in rancher.'
   }
 }, function(self) {
   NX.I18n.register(self);

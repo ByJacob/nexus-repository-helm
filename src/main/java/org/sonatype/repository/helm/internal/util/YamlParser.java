@@ -12,6 +12,7 @@
  */
 package org.sonatype.repository.helm.internal.util;
 
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -52,6 +53,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Utility methods for getting attributes from yaml files, writing to yaml files
  *
  * @since 0.0.1
+ *
+ * Edit By Jakub Rosa © 2019 Telic AG.
  */
 @Named
 @Singleton
@@ -59,6 +62,10 @@ public class YamlParser
     extends ComponentSupport
 {
   private static final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
+  public YamlParser() {
+    mapper.registerModule(new JodaModule());
+  }
 
   public Map<String, Object> load(InputStream is) throws IOException {
     checkNotNull(is);
@@ -77,18 +84,29 @@ public class YamlParser
     return map;
   }
 
+  public ChartIndex loadToChartIndex(InputStream is) throws IOException {
+    checkNotNull(is);
+    String data = IOUtils.toString(new UnicodeReader(is));
+    return mapper.readValue(data, ChartIndex.class);
+  }
+
+
   public void write(final OutputStream os, final ChartIndex index) {
     try (OutputStreamWriter writer = new OutputStreamWriter(os)) {
-      Yaml yaml = new Yaml(new JodaPropertyConstructor(),
-          setupRepresenter(),
-          new DumperOptions(),
-          new Resolver());
-      String result = yaml.dumpAsMap(index);
+      String result = getString(index);
       writer.write(result);
     }
     catch (IOException ex) {
       log.error("Unable to write to OutputStream for index.yaml", ex);
     }
+  }
+
+  public String getString(ChartIndex index) {
+    Yaml yaml = new Yaml(new JodaPropertyConstructor(),
+        setupRepresenter(),
+        new DumperOptions(),
+        new Resolver());
+    return yaml.dumpAsMap(index);
   }
 
   private Representer setupRepresenter() {
