@@ -80,6 +80,10 @@
       <artifactId>snakeyaml</artifactId>
       <version>1.20</version>
     </dependency>
+    <dependency>
+      <groupId>org.sonatype.nexus</groupId>
+      <artifactId>nexus-cleanup</artifactId>
+    </dependency>
 
   </dependencies>
 

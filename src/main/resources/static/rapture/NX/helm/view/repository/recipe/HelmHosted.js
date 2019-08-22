@@ -19,12 +19,13 @@
  *
  * Edit By Jakub Rosa © 2019 Telic AG.
  */
-Ext.define('NX.coreui.view.repository.recipe.HelmHosted', {
+Ext.define('NX.helm.view.repository.recipe.HelmHosted', {
   extend: 'NX.coreui.view.repository.RepositorySettingsForm',
   alias: 'widget.nx-coreui-repository-helm-hosted',
   requires: [
     'NX.coreui.view.repository.facet.StorageFacet',
     'NX.coreui.view.repository.facet.StorageFacetHosted',
+    'NX.coreui.view.repository.facet.CleanupPolicyFacet',
     'NX.I18n'
   ],
 
@@ -37,6 +38,7 @@ Ext.define('NX.coreui.view.repository.recipe.HelmHosted', {
     me.items = [
       {xtype: 'nx-coreui-repository-storage-facet'},
       {xtype: 'nx-coreui-repository-storage-hosted-facet'},
+      {xtype: 'nx-coreui-repository-cleanup-policy-facet'},
       {xtype: 'nx-coreui-repository-helm-facet'}
     ];
 
