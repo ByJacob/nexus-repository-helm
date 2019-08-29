@@ -3,16 +3,15 @@
  *
  * Create By Jakub Rosa © 2019 Telic AG.
  */
-Ext.define('NX.helm.view.repository.recipe.facet.HelmHostedFacet', {
+Ext.define('NX.helm.view.repository.recipe.facet.AbsoluteUrlFacet', {
   extend: 'Ext.form.FieldContainer',
-  alias: 'widget.nx-coreui-repository-helm-facet',
+  alias: 'widget.nx-coreui-repository-absolute-url-facet',
   requires: [
     'NX.I18n'
   ],
 
-  initComponent: function() {
+  initComponent: function () {
     var me = this;
-
 
     me.items = [
       {

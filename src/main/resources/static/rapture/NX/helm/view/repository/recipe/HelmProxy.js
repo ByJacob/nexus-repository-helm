@@ -16,28 +16,31 @@
  * Repository "Settings" form for a Helm Proxy repository
  */
 Ext.define('NX.helm.view.repository.recipe.HelmProxy', {
-    extend: 'NX.coreui.view.repository.RepositorySettingsForm',
-    alias: 'widget.nx-coreui-repository-helm-proxy',
-    requires: [
-        'NX.coreui.view.repository.facet.ProxyFacet',
-        'NX.coreui.view.repository.facet.StorageFacet',
-        'NX.coreui.view.repository.facet.HttpClientFacet',
-        'NX.coreui.view.repository.facet.NegativeCacheFacet'
-    ],
+  extend: 'NX.coreui.view.repository.RepositorySettingsForm',
+  alias: 'widget.nx-coreui-repository-helm-proxy',
+  requires: [
+    'NX.coreui.view.repository.facet.ProxyFacet',
+    'NX.coreui.view.repository.facet.StorageFacet',
+    'NX.coreui.view.repository.facet.HttpClientFacet',
+    'NX.coreui.view.repository.facet.CleanupPolicyFacet',
+    'NX.coreui.view.repository.facet.NegativeCacheFacet'
+  ],
 
-    /**
-     * @override
-     */
-    initComponent: function () {
-        var me = this;
+  /**
+   * @override
+   */
+  initComponent: function () {
+    var me = this;
 
-        me.items = [
-        {xtype: 'nx-coreui-repository-proxy-facet'},
-        {xtype: 'nx-coreui-repository-storage-facet'},
-        {xtype: 'nx-coreui-repository-negativecache-facet'},
-        {xtype: 'nx-coreui-repository-httpclient-facet'}
-        ];
+    me.items = [
+      {xtype: 'nx-coreui-repository-proxy-facet'},
+      {xtype: 'nx-coreui-repository-storage-facet'},
+      {xtype: 'nx-coreui-repository-negativecache-facet'},
+      {xtype: 'nx-coreui-repository-httpclient-facet'},
+      {xtype: 'nx-coreui-repository-cleanup-policy-facet'},
+      {xtype: 'nx-coreui-repository-absolute-url-facet'}
+    ];
 
-        me.callParent();
-    }
+    me.callParent();
+  }
 });

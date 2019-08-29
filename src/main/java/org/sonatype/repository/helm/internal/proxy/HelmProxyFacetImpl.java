@@ -14,6 +14,7 @@ package org.sonatype.repository.helm.internal.proxy;
 
 import java.io.IOException;
 
+import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -91,7 +92,21 @@ public class HelmProxyFacetImpl
     AssetKind assetKind = context.getAttributes().require(AssetKind.class);
     switch (assetKind) {
       case HELM_INDEX:
-        return getAsset(INDEX_YAML);
+        Content content = getAsset(INDEX_YAML);
+        Boolean isAbsoluteUrl =
+            (Boolean)
+                context
+                    .getRepository()
+                    .getConfiguration()
+                    .attributes("helm")
+                    .get("absoluteUrl", false);
+        log.debug(
+            "Repository {} configuration: {}", context.getRepository().getName(),
+            context.getRepository().getConfiguration().getAttributes());
+        if (Optional.ofNullable(isAbsoluteUrl).orElse(false)) {
+          content = helmPathUtils.updateYamlUrls(content, context.getRepository().getUrl());
+        }
+        return content;
       case HELM_PACKAGE:
         TokenMatcher.State matcherState = helmPathUtils.matcherState(context);
         return getAsset(helmPathUtils.filename(matcherState));

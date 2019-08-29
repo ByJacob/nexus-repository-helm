@@ -22,6 +22,12 @@ public class ChartEntry
   private List<String> urls;
   private List<String> sources;
   private List<Map<String, String>> maintainers;
+  private String engine;
+  private String kubeVersion;
+  private List<String> keywords;
+  private String home;
+  private Boolean deprecated;
+  private String tillerVersion;
 
   public String getName() { return this.name; }
 
@@ -97,5 +103,53 @@ public class ChartEntry
 
   public void setMaintainers(final List<Map<String, String>> maintainers) {
     this.maintainers = maintainers;
+  }
+
+  public String getEngine() {
+    return engine;
+  }
+
+  public void setEngine(String engine) {
+    this.engine = engine;
+  }
+
+  public String getKubeVersion() {
+    return kubeVersion;
+  }
+
+  public void setKubeVersion(String kubeVersion) {
+    this.kubeVersion = kubeVersion;
+  }
+
+  public List<String> getKeywords() {
+    return keywords;
+  }
+
+  public void setKeywords(List<String> keywords) {
+    this.keywords = keywords;
+  }
+
+  public String getHome() {
+    return home;
+  }
+
+  public void setHome(String home) {
+    this.home = home;
+  }
+
+  public Boolean getDeprecated() {
+    return deprecated;
+  }
+
+  public void setDeprecated(Boolean deprecated) {
+    this.deprecated = deprecated;
+  }
+
+  public String getTillerVersion() {
+    return tillerVersion;
+  }
+
+  public void setTillerVersion(String tillerVersion) {
+    this.tillerVersion = tillerVersion;
   }
 }

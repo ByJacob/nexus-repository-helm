@@ -39,7 +39,7 @@ Ext.define('NX.helm.view.repository.recipe.HelmHosted', {
       {xtype: 'nx-coreui-repository-storage-facet'},
       {xtype: 'nx-coreui-repository-storage-hosted-facet'},
       {xtype: 'nx-coreui-repository-cleanup-policy-facet'},
-      {xtype: 'nx-coreui-repository-helm-facet'}
+      {xtype: 'nx-coreui-repository-absolute-url-facet'}
     ];
 
     me.callParent();
